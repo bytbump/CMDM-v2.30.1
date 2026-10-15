@@ -1,0 +1,171 @@
+=====================================================================
+ CMDM v2.30.1 - USER GUIDE (for schools / principals)
+ Mid Day Meal Data Entry & Reporting
+=====================================================================
+
+CONTENTS
+  1. First-time installation & activation
+  2. Daily / monthly workflow (in order)
+  3. The 8 reports
+  4. Password reset (backup codes)
+  5. Licence & offline rules
+  6. Troubleshooting
+
+---------------------------------------------------------------------
+1. FIRST-TIME INSTALLATION & ACTIVATION
+---------------------------------------------------------------------
+Windows (this USB stick - single file install):
+  a) Double-click CMDM_Setup_v2.30.1.exe
+     (right-click -> Run as administrator).
+  b) It installs everything by itself - XAMPP 8.2 and the CMDM
+     application are inside this file, NO internet download needed.
+     Just wait while XAMPP installs in the background (several
+     minutes). Your existing data is NEVER overwritten on re-run.
+  c) A desktop icon named CMDM is created - use it every day.
+     It starts the servers and opens the app automatically.
+Linux (Mint/Ubuntu): ask your vendor for the Linux pack
+  (a CMDM_Launcher.sh based install).
+
+c) The app opens showing an ACTIVATION screen with your computer's
+   HARDWARE ID (a long code). Send this Hardware ID to your vendor
+   (the person who gave you this folder).
+d) You will receive a file named exactly:  Licence.json
+   Place it INSIDE the CMDM folder, next to index.php:
+     Windows : C:\xampp\htdocs\CMDM\Licence.json
+     Linux   : /opt/lampp/htdocs/CMDM/Licence.json
+   If the downloaded file is named "Licence (1).json", rename it
+   back to exactly "Licence.json".
+e) Keep INTERNET ON and reload the page (http://localhost/CMDM).
+   The lock screen disappears after the first online check.
+f) Open the one-time setup page and create your principal login:
+     http://localhost/CMDM/setup/install.php
+   Enter school name, principal name, Login ID and password.
+   WRITE DOWN the 10 backup codes shown - they are the only way
+   to reset your password later. This setup page locks forever
+   after the first account is created.
+g) Sign in at http://localhost/CMDM with your Login ID + password.
+
+Daily use: double-click the desktop CMDM icon (it starts the
+servers and opens the app). You may bookmark http://localhost/CMDM.
+Re-running CMDM_Setup_v2.30.1.exe later is safe - it only starts
+things, never deletes your data or licence.
+
+---------------------------------------------------------------------
+2. WORKFLOW - DO THESE IN ORDER
+---------------------------------------------------------------------
+[1] Basic Settings (sidebar -> Data Entry Settings -> Basic Settings)
+    School profile: name, state, district, sub-division, block, GP,
+    DISE code, bank + account number, SHG name, rice per student
+    (Class V 0.100 kg, Class VI-VIII 0.150 kg). Upload logo,
+    signature and stamp images for the printed reports.
+
+[2] Weekly Cooking Menu
+    Monday-Saturday dishes, comma separated, e.g.
+      Rice, Dal, Soyabeen
+    Rice stays in the menu text but is NEVER an expense item
+    (government supplied free) - do not enter it in expense tables.
+
+[3] Expense Item List
+    Master list of items with units (kg / litre / pcs), e.g.
+    Dal, Potato, Salt, Mustard Oil, Fuel (Firewood), Egg.
+    KEEP THIS LIST COMPLETE - it powers the Monthly Settings editor:
+      * names entered here appear as suggestions in the SUB HEADER
+        box (so enter sub-heads like Pulses, Vegetables, Spices,
+        Fuel here too, not just food items),
+      * Particulars boxes suggest these names while typing,
+      * units are auto-filled when a name matches.
+
+[4] Monthly Settings (repeat every month)
+    - Enrollment per class, cooking cost per student,
+      honorarium + remuneration amounts.
+    - Opening stock/cash (auto-carried from last month's closing
+      once data exists), rice/cash received, interest, bank-match.
+    - Item Cook Expense: for each DAY you see one block per MENU
+      ITEM, e.g.
+        MONDAY - Menu - Rice, Dal, Soyabeen
+        Menu item :- [ Dal ]
+          Particulars | Sub Header | Units | Quantity/Student | Cost/Unit
+          Dal         | Pulses     | kg    | 0.025            | 120
+          Salt        | Spices     | kg    | 0.005            | 25
+      Sub Header is free text per dish, with a suggestion list
+      built from your Expense Item List + previously used sub-heads
+      (Vegetables, Pulses, Oil, Spices, Fuel, ...). "Cost / Student"
+      shows automatically (quantity x rate). Typing "Rice" warns
+      and is ignored on save.
+
+[5] Form-C Entry (daily)
+    Enter CP (children present) and MT (meals taken) per class.
+    Rules: date must be inside the month, one entry per date
+    (edit to correct), CP cannot exceed enrollment, MT cannot
+    exceed CP. Rice auto-calculates from MT.
+
+[6] Reports -> select month -> View / Download PDF.
+
+---------------------------------------------------------------------
+3. THE 8 REPORTS
+---------------------------------------------------------------------
+ 1. Monthly Report (Form-C) ......... daily CP/MT/rice + menu + totals
+ 2. CMDM Expense Sheet .............. daily register with menu served
+ 3. Class V - Other Expense Report .. sub-head totals (Sr/Particulars/
+ 4. Class VI-VIII - Other Expense ...  Units/Quantity/Cost + Grand Total
+ 5. MDM Daily Rice Register ......... opening/consumed/closing per day
+ 6. Cash and Rice Register ........... bank balances + rice register
+ 7. Form-K for Class V ............... official utilisation certificate
+ 8. Form-K for Class VI-VIII ......... (includes cook-cum-helper pay)
+
+---------------------------------------------------------------------
+4. PASSWORD RESET (BACKUP CODES)
+---------------------------------------------------------------------
+  - Login page -> "Forgot password? Reset using a backup code".
+  - Enter Login ID + one unused 6-digit code -> set a new password.
+  - Each code works ONCE. See remaining codes at
+    Data Entry Settings -> Backup Codes ("Issue New Codes" replaces
+    all old codes - write the new ones down immediately).
+
+---------------------------------------------------------------------
+5. LICENCE & OFFLINE RULES
+---------------------------------------------------------------------
+  - The licence file is locked to ONE computer and has an EXPIRY
+    date (your vendor tells you the validity period). Renewal =
+    vendor sends a new Licence.json, replace the old file, reload.
+  - Internet is needed for the FIRST check and then roughly once a
+    month: the app re-confirms status every 5 minutes when online.
+  - After 30 days without internet the app locks until it goes
+    online once. Plan renewals / checks around school holidays.
+  - Hardware change (new hard disk / reinstalled Windows/Linux) or
+    a second computer changes the Hardware ID -> ask the vendor
+    for a fresh Licence.json for the new ID.
+  - One licence = one computer running the app. Other computers in
+    the same school on the same LAN can open the app in their
+    browsers via http://<main-computer-ip>/CMDM while it is on -
+    no extra licence needed for browser-only use.
+
+---------------------------------------------------------------------
+6. TROUBLESHOOTING
+---------------------------------------------------------------------
+ * Lock screen says "Licence.json not found" ..... file is missing
+   or misnamed - must be CMDM/Licence.json exactly.
+ * "Signature mismatch / not issued for you" .... wrong file for
+   this computer - use the file made for THIS Hardware ID.
+ * "Issued for a different computer (HWID mismatch)" .... the
+   hardware changed or the file belongs to another PC.
+ * "Licence expired ..." .......................... ask vendor to renew.
+ * "Deactivated by the vendor" .................... contact vendor.
+ * "Offline for over 30 days" ..................... connect internet
+   once and reload.
+ * "First activation needs internet" .............. connect internet
+   once and reload.
+ * Browser shows XAMPP dashboard instead ......... open
+   http://localhost/CMDM exactly (not just http://localhost).
+ * Blank/old page ................................. hard refresh:
+   Ctrl+Shift+R (Chrome/Edge).
+ * Port conflict (Skype/IIS) ..................... close the other
+   program using port 80, re-run the launcher.
+ * "Failed to upload logo/signature" (Linux) .... the uploads
+   folder is not writable by the web server. Run:
+     sudo chmod 733 /opt/lampp/htdocs/CMDM/uploads
+   then upload again (images: png/jpg/gif/webp, under 2 MB).
+
+For help contact your vendor with: school name + Hardware ID
+(shown on the lock screen) + a photo of any error message.
+=====================================================================
